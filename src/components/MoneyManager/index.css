@@ -1,0 +1,72 @@
+/* Write your CSS here */
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.money-manager-head-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/money-manager/money-manager-bg.png');
+  background-size: cover;
+  padding: 20px;
+  width: 80vw;
+}
+
+.transaction-heading {
+  font-size: 20px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.label {
+  color: #7e858e;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.input {
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.add-transaction {
+  display: flex;
+  flex-direction: column;
+  width: 30vw;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 30px;
+}
+
+.submit-btn {
+  padding: 8px;
+  background-color: #0b69ff;
+  margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 20%;
+}
+
+.transaction-history {
+  display: flex;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 25px;
+  margin: 30px;
+}

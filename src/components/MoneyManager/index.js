@@ -22,7 +22,7 @@ class MoneyManager extends Component {
     expense: 0,
     income: 0,
     title: '',
-    amount: 0,
+    amount: '',
     type: 'Income',
     transactionList: [],
   }
@@ -31,7 +31,7 @@ class MoneyManager extends Component {
     const {transactionList} = this.state
 
     this.setState({
-      transactionList: transactionList.filter(each => each.id === id),
+      transactionList: transactionList.filter(each => each.id !== id),
     })
   }
 
@@ -48,18 +48,18 @@ class MoneyManager extends Component {
     this.setState(prevState => ({
       transactionList: [...prevState.transactionList, newTransaction],
       title: '',
-      amount: 0,
+      amount: '',
     }))
 
     if (type === 'Income') {
       this.setState(prevState => ({
-        income: prevState.income + amount,
-        balance: prevState.balance + amount,
+        income: prevState.income + parseInt(amount),
+        balance: prevState.balance + parseInt(amount),
       }))
     } else {
       this.setState(prevState => ({
-        balance: prevState.balance - amount,
-        expense: prevState.expense + amount,
+        balance: prevState.balance - parseInt(amount),
+        expense: prevState.expense + parseInt(amount),
       }))
     }
   }
@@ -77,7 +77,14 @@ class MoneyManager extends Component {
   }
 
   render() {
-    const {transactionList, expense, income, balance} = this.state
+    const {
+      transactionList,
+      expense,
+      income,
+      balance,
+      title,
+      amount,
+    } = this.state
     return (
       <div className="main-container">
         <div className="money-manager-head-container">
@@ -98,12 +105,13 @@ class MoneyManager extends Component {
             imgUrl="https://assets.ccbp.in/frontend/react-js/money-manager/income-image.png "
             text="income"
             money={income}
-            dataId=""
+            dataId="incomeAmount"
           />
           <MoneyDetails
             imgUrl="https://assets.ccbp.in/frontend/react-js/money-manager/expenses-image.png "
             text="expenses"
             money={expense}
+            dataId="expensesAmount"
           />
         </div>
         <div className="transaction-history">
@@ -118,6 +126,7 @@ class MoneyManager extends Component {
               className="input"
               placeholder="TITLE"
               onChange={this.onChangeTitle}
+              value={title}
             />
             <label htmlFor="amount" className="label">
               AMOUNT
@@ -128,6 +137,7 @@ class MoneyManager extends Component {
               className="input"
               placeholder="AMOUNT"
               onChange={this.onChangeAmount}
+              value={amount}
             />
             <label htmlFor="type" className="label">
               TYPE

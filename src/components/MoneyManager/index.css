@@ -70,3 +70,12 @@
   padding: 25px;
   margin: 30px;
 }
+
+.list-style {
+  list-style: none;
+}
+
+.money-details {
+  display: flex;
+  justify-content: space-between;
+}

@@ -27,6 +27,14 @@ class MoneyManager extends Component {
     transactionList: [],
   }
 
+  onDelete = id => {
+    const {transactionList} = this.state
+
+    this.setState({
+      transactionList: transactionList.filter(each => each.id === id),
+    })
+  }
+
   onSubmit = event => {
     const {title, amount, type} = this.state
     event.preventDefault()
@@ -38,9 +46,9 @@ class MoneyManager extends Component {
     }
 
     this.setState(prevState => ({
-      transactionList: [...prevState, newTransaction],
+      transactionList: [...prevState.transactionList, newTransaction],
       title: '',
-      amount: '',
+      amount: 0,
     }))
 
     if (type === 'Income') {
@@ -69,18 +77,34 @@ class MoneyManager extends Component {
   }
 
   render() {
-    const {transactionList} = this.state
+    const {transactionList, expense, income, balance} = this.state
     return (
       <div className="main-container">
         <div className="money-manager-head-container">
           <h1>Hi, Richard</h1>
-          <span>
+          <p>
             Welcome back to your
             <span style={{color: '#0b69ff'}}> Money Manager</span>
-          </span>
+          </p>
         </div>
         <div className="money-details">
-          <h1>hi</h1>
+          <MoneyDetails
+            imgUrl="https://assets.ccbp.in/frontend/react-js/money-manager/balance-image.png"
+            text="balance"
+            money={balance}
+            dataId="balanceAmount"
+          />
+          <MoneyDetails
+            imgUrl="https://assets.ccbp.in/frontend/react-js/money-manager/income-image.png "
+            text="income"
+            money={income}
+            dataId=""
+          />
+          <MoneyDetails
+            imgUrl="https://assets.ccbp.in/frontend/react-js/money-manager/expenses-image.png "
+            text="expenses"
+            money={expense}
+          />
         </div>
         <div className="transaction-history">
           <form className="add-transaction">
@@ -126,9 +150,13 @@ class MoneyManager extends Component {
           <div className="history">
             <h1 className="transaction-heading">History</h1>
             <p className="table">Title Amount Type</p>
-            <ul>
+            <ul className="list-style">
               {transactionList.map(each => (
-                <TransactionItem key={each.id} details={each} />
+                <TransactionItem
+                  key={each.id}
+                  details={each}
+                  onDelete={this.onDelete}
+                />
               ))}
             </ul>
           </div>

@@ -1,1 +1,11 @@
 /* Write your CSS here */
+.money-container {
+  display: flex;
+  margin: 10px;
+  align-items: center;
+}
+
+.money-icon {
+  width: 100px;
+  margin: 10px;
+}
